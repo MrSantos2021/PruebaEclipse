@@ -12,13 +12,13 @@ import DTO.Armas_Enum;
 import DTO.Personajes;
 
 public class InicioFormulario {
-	private JFrame ventanaInicio;
+	public JFrame ventanaInicio;
 	private JPanel panelCliente;
 	private JLabel lbl_nombre, lbl_personaje, lbl_arma;
-	private JTextField txt_name;
-	private JComboBox<Personajes>cb_personajes;
-	private JComboBox<Armas_Enum>cb_armas;
-	private JButton btn_grabar;
+	public JTextField txt_name;
+	public JComboBox<Personajes>cb_personajes;
+	public JComboBox<Armas_Enum>cb_armas;
+	public JButton btn_grabar;
 	
 	public InicioFormulario() {
 		// TODO Auto-generated constructor stub
