@@ -343,6 +343,19 @@ public class ConexBD {
 			e.printStackTrace();
 		}		
 	}
+	/*Registro de nuevo Empleado*/
+	public void crearEmpleado(String nombreEmp, String nombre1, String nombre2, String apellido1, String apellido2) {
+		state = null;
+		
+		try {
+			state = (Statement) conn.createStatement();
+			state.executeUpdate("insert into empleadostbl (nombre_emp, nombre1, nombre2, apellido1, apellido2) values('"+nombreEmp+"','"+nombre1+"','"+nombre2+"','"+apellido1+"','"+apellido2+"');");
+			state.close();	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 }

@@ -18,7 +18,7 @@ public class VentanaPrincipal{
 	public JMenuItem jmi_local;
 	
 	public JMenu jm_rrhh, jm_rrhhfuncion, jm_rrhhPersonal;
-	public JMenuItem jmi_funcioncrear, jmi_funcionver, jmi_empleado, jmi_contrato;
+	public JMenuItem jmi_funcioncrear, jmi_funcionver, jmi_empleado, jmi_contrato, jmi_designacion;
 	
 	public JMenu jm_financiero;
 	public JMenu jm_estadofin;
@@ -57,7 +57,7 @@ public class VentanaPrincipal{
 		jm_rrhh = new JMenu("Recursos Humanos");
 		
 		jm_rrhhfuncion = new JMenu("Funciones o Cargos");
-		jmi_funcioncrear = new JMenuItem("Crear");
+		jmi_funcioncrear = new JMenuItem("Crear Cargos");
 		jmi_funcionver = new JMenuItem("Ver funciones o cargos");
 		jm_rrhhfuncion.add(jmi_funcioncrear);
 		jm_rrhhfuncion.add(jmi_funcionver);
@@ -65,8 +65,10 @@ public class VentanaPrincipal{
 		jm_rrhhPersonal = new JMenu("Selección Personal");
 		jmi_empleado = new JMenuItem("Datos del Empleado");
 		jmi_contrato = new JMenuItem("Contrato y Selección");
+		jmi_designacion = new JMenuItem("Designación");
 		jm_rrhhPersonal.add(jmi_empleado);
 		jm_rrhhPersonal.add(jmi_contrato);
+		jm_rrhhPersonal.add(jmi_designacion);
 		
 		jm_rrhh.add(jm_rrhhfuncion);
 		jm_rrhh.add(jm_rrhhPersonal);
@@ -88,7 +90,6 @@ public class VentanaPrincipal{
 		jm_menuPrincipal.add(construirMenuFinanciero());
 		jm_menuPrincipal.add(construirMenuRRHH());
 		jm_menuPrincipal.add(construirMenuGeneral());
-		
 		
 		ventanaApp.setSize(550,400);
 		ventanaApp.setVisible(false);/**/
