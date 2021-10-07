@@ -97,3 +97,17 @@ select * from funciontbl;
 select name_funcion from funciontbl where nombre_emp = 'Abc' and (category_funcion = 'A' or category_funcion = 'B');
 truncate table funciontbl;
 insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('Abc', 'Funcion 1', 'A', 'Realiza a,b, c.');
+
+create table empleadostbl(
+id_empleado int not null auto_increment,
+nombre_emp varchar(50) not null,
+nombre1 varchar(40) not null,
+nombre2 varchar(40) not null,
+apellido1 varchar(50) not null,
+apellido2 varchar(50) not null,
+primary key(id_empleado)
+);
+select * from empleadostbl;
+select concat(nombre1, " ", apellido1) as empleado from empleadostbl;
+truncate empleadostbl;
+insert into empleadostbl (nombre_emp, nombre1, nombre2, apellido1, apellido2) values('a','b','c','d','e');
