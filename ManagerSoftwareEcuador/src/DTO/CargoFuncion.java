@@ -1,11 +1,11 @@
-package Vista;
+package DTO;
 
-public class FormularioCargo {
+public class CargoFuncion {
 	private String nombre;
 	private String categoria;
 	private String descrip;
 	
-	public FormularioCargo() {
+	public CargoFuncion() {
 		// TODO Auto-generated constructor stub
 	}
 

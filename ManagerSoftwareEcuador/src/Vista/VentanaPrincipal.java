@@ -17,9 +17,24 @@ public class VentanaPrincipal{
 	public JMenu jm_general;
 	public JMenuItem jmi_local;
 	
+	public JMenu jm_rrhh, jm_rrhhfuncion;
+	public JMenuItem jmi_funcioncrear, jmi_funcionver;
+	
 	public VentanaPrincipal() {
 		// TODO Auto-generated constructor stub
 		construirVentanaPrincipal();
+	}
+	
+	public JMenu construirMenuRRHH() {
+		jm_rrhh = new JMenu("Recursos Humanos");
+		jm_rrhhfuncion = new JMenu("Funciones o Cargos");
+		jmi_funcioncrear = new JMenuItem("Crear");
+		jmi_funcionver = new JMenuItem("Ver funciones o cargos");
+		jm_rrhhfuncion.add(jmi_funcioncrear);
+		jm_rrhhfuncion.add(jmi_funcionver);
+		jm_rrhh.add(jm_rrhhfuncion);
+		
+		return jm_rrhh;
 	}
 	
 	
@@ -34,7 +49,9 @@ public class VentanaPrincipal{
 		ventanaApp = new JFrame("Name Company");
 		deskPrincipal =new JDesktopPane();
 		
+		jm_menuPrincipal.add(construirMenuRRHH());
 		jm_menuPrincipal.add(construirMenuGeneral());
+		
 		
 		ventanaApp.setSize(550,400);
 		ventanaApp.setVisible(false);/**/

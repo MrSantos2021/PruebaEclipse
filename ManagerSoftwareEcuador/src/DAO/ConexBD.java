@@ -82,7 +82,7 @@ public class ConexBD {
 		
 		try {
 			state = (Statement) conn.createStatement();
-			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Funcion 1', 'A', 'Realiza a,b, c.');");
+			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Gerente', 'Categoría A', 'Desempeñar en una organización la planeación, la organización, la dirección y el control');");
 			state.close();	
 			
 		}catch(Exception e) {
@@ -126,7 +126,7 @@ public class ConexBD {
 		prs = null;
 		rs = null;
 		try {
-			prs = (PreparedStatement) conn.prepareStatement("select name_funcion from funciontbl where nombre_emp = '"+nombre+"' and (category_funcion = 'A' or category_funcion = 'B');");
+			prs = (PreparedStatement) conn.prepareStatement("select name_funcion from funciontbl where nombre_emp = '"+nombre+"' and (category_funcion = 'Categoría A' or category_funcion = 'Categoría B' or category_funcion = 'Categoría C');");
 			prs.execute();
 			rs = prs.getResultSet();
 			while(rs.next()) {
@@ -332,7 +332,17 @@ public class ConexBD {
 		}
 		return activo;
 	}
-	
+	/*Registro de nueva Función o Cargo*/
+	public void crearFuncion(String empresa, String funcion, String categoria, String descripcion) {
+		state = null;
+		try {
+			state = (Statement) conn.createStatement();
+			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+empresa+"', '"+funcion+"', '"+categoria+"', '"+descripcion+"');");
+			state.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}		
+	}
 
 	
 }

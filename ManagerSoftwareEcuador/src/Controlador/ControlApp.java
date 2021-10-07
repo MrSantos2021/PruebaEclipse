@@ -2,6 +2,7 @@ package Controlador;
 
 import DAO.ConexBD;
 import Vista.FormularioAddEmpresa;
+import Vista.FormularioCargoFuncion_Crear;
 import Vista.FormularioChangeEmpresa;
 import Vista.FormularioLocal;
 import Vista.FormularioLogin;
@@ -16,13 +17,14 @@ public class ControlApp {
 	private ControlFormularioChangeEmpresa cfce = new ControlFormularioChangeEmpresa();
 	private ControlVentanaPrincipal cvp = new ControlVentanaPrincipal();
 	private ControlFormularioLocal cflocal = new ControlFormularioLocal();
-	
+	private ControlFormularioFuncion cfcargo = new ControlFormularioFuncion();
 	
 	private FormularioLogin fl = new FormularioLogin();
 	private FormularioAddEmpresa fae = new FormularioAddEmpresa();
 	private FormularioChangeEmpresa fce = new FormularioChangeEmpresa();
 	private VentanaPrincipal vp = new VentanaPrincipal();
 	private FormularioLocal formLocal;
+	private FormularioCargoFuncion_Crear formCargo;
 	
 	public ControlApp() {
 		// TODO Auto-generated constructor stub
@@ -46,6 +48,9 @@ public class ControlApp {
 		/*Control Formulario Local*/
 		formLocal = new FormularioLocal();
 		cflocal.local_ventana(vp, formLocal, connex);
+		
+		formCargo = new FormularioCargoFuncion_Crear();
+		cfcargo.funcion_ventanaFormulario(vp, formCargo, connex);
 				
 	}
 }
