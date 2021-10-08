@@ -108,6 +108,6 @@ apellido2 varchar(50) not null,
 primary key(id_empleado)
 );
 select * from empleadostbl;
-select concat(nombre1, " ", apellido1) as empleado from empleadostbl;
+select concat(apellido1, " ", nombre1) as empleado from empleadostbl where nombre_emp ='';
 truncate empleadostbl;
 insert into empleadostbl (nombre_emp, nombre1, nombre2, apellido1, apellido2) values('a','b','c','d','e');
