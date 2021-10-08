@@ -64,7 +64,7 @@ public class ControlApp {
 		
 		
 		formBalanceIni = new FormCont_BalanceIni();
-		cfbi.ventana_balanceInicial(vp, formBalanceIni);
+		cfbi.ventana_balanceInicial(vp, formBalanceIni, connex);
 		
 		formPersonal = new FormularioPersonal();
 		cfeempleado.cfe_empleado(vp, formPersonal, connex);

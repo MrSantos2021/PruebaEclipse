@@ -252,8 +252,6 @@ public class ConexBD {
 		}
 	}
 	
-	
-	
 	/*Al momento de guardar dicha empresa se CREA TABLA de REGISTRO para dicha empresa*/
 	public void crearTablaRegxId(int id) {
 		state = null;

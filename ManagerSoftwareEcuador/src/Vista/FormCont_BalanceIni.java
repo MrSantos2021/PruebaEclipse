@@ -25,7 +25,7 @@ public class FormCont_BalanceIni {
 	private JLabel lbl_ctadb, lblvalordb, lbldetdb, lbl_ctahb, lblvalorhb, lbldethb, lbl_ctapt, lblvalorpt, lbldetpt;
 	public JComboBox<String> cb_ctaDebe, cb_ctaHabe, cb_ctaPat;
 	public JTextField txt_valordb, txt_valorhb, txt_valorpat;
-	private JTextArea txt_detalledb, txt_dethb, txt_detpat;
+	public JTextArea txt_detalledb, txt_dethb, txt_detpat;
 	public JButton btn_db, btn_hb, btn_pat, btn_visualizar, btn_grabar;
 	
 	public FormCont_BalanceIni() {
@@ -55,14 +55,14 @@ public class FormCont_BalanceIni {
 		jpDebitar.setLayout(null);
 		
 		dtm_debe = new DefaultTableModel();
+		dtm_debe.addColumn("Cuenta");
+		dtm_debe.addColumn("Valor");
 		
 		tbl_debe = new JTable(dtm_debe);
 		tbl_debe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		jsp_debe = new JScrollPane(tbl_debe);
 		jsp_debe.setBounds(325, 15, 220, 150);
 		
-		dtm_debe.addColumn("Cuenta");
-		dtm_debe.addColumn("Valor");
 		TableColumn tc_db = tbl_debe.getColumn("Cuenta");
 		tc_db.setPreferredWidth(150);
 		DefaultTableCellRenderer derech = new DefaultTableCellRenderer();
@@ -100,11 +100,19 @@ public class FormCont_BalanceIni {
 		jpAcreditar.setLayout(null);
 		
 		dtm_haber = new DefaultTableModel();
+		dtm_haber.addColumn("Cuenta");
+		dtm_haber.addColumn("Valor");
 		
 		tbl_haber = new JTable(dtm_haber);
 		tbl_haber.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		jsp_haber = new JScrollPane(tbl_haber);
 		jsp_haber.setBounds(325, 15, 220, 150);
+		TableColumn tc_hb = tbl_haber.getColumn("Cuenta");
+		tc_hb.setPreferredWidth(150);
+		DefaultTableCellRenderer rightHb = new DefaultTableCellRenderer();
+		rightHb.setHorizontalAlignment(JLabel.RIGHT);
+		tbl_haber.getColumnModel().getColumn(1).setCellRenderer(rightHb);
+		
 		lbl_ctahb = new JLabel("Seleccione la cuenta:");
 		lbl_ctahb.setBounds(10, 15, 150, 20);
 		cb_ctaHabe = new JComboBox<String>();
@@ -136,11 +144,21 @@ public class FormCont_BalanceIni {
 		jpPatrimonio.setBounds(1, 360, 560, 180);
 		jpPatrimonio.setLayout(null);
 		dtm_patr = new DefaultTableModel();
+		dtm_patr.addColumn("Cuenta");
+		dtm_patr.addColumn("Valor");
 		
 		tbl_patr = new JTable(dtm_patr);
 		tbl_patr.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		jsp_patr = new JScrollPane(tbl_patr);
 		jsp_patr.setBounds(325, 15, 220, 150);
+		
+		TableColumn tc_pat = tbl_patr.getColumn("Cuenta");
+		tc_pat.setPreferredWidth(150);
+		DefaultTableCellRenderer rightPat = new DefaultTableCellRenderer();
+		rightPat.setHorizontalAlignment(JLabel.RIGHT);
+		tbl_patr.getColumnModel().getColumn(1).setCellRenderer(rightPat);
+		
+		
 		lbl_ctapt = new JLabel("Seleccione la cuenta:");
 		lbl_ctapt.setBounds(10, 15, 150, 20);
 		cb_ctaPat = new JComboBox<String>();

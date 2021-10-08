@@ -91,17 +91,18 @@ public class ControlFormularioLogin {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String tempEmpresa = fl.txt_empresa.getText();
+				String tempLocal = fl.cb_local.getSelectedItem().toString();
 				String tempUser = fl.cb_usuario.getSelectedItem().toString();
 				String tempPass = String.valueOf(fl.txt_pass.getPassword());
 				if(conn.loginIngreso(tempEmpresa, tempUser, tempPass) == true) {
 					fl.ventanaInicio.setVisible(false);
 					vp.ventanaApp.setVisible(true);
-					vp.ventanaApp.setTitle(fl.txt_empresa.getText());
+					vp.ventanaApp.setTitle(tempEmpresa);
 					LocalDateTime inicioHora = LocalDateTime.now();
 					LocalDate inicioFecha = LocalDate.now();
 					String tempH = inicioHora.getHour()+":"+inicioHora.getMinute()+":"+inicioHora.getSecond();
 					String tempF = inicioFecha.getYear()+"-"+inicioFecha.getMonthValue()+"-"+inicioFecha.getDayOfMonth();
-					conn.regHistorialEmpresa(fl.txt_empresa.getText(), fl.cb_local.getSelectedItem().toString(), "User 1", tempH, tempF);	
+					conn.regHistorialEmpresa(tempEmpresa, tempLocal, tempUser, tempH, tempF);	
 				}else {
 					JOptionPane.showMessageDialog(null, "Clave incorrecta", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
 					fl.txt_pass.setText("");
