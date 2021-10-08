@@ -120,13 +120,32 @@ public class ConexBD {
 		}
 		return locales;	
 	}
-	/*Seleciona los nombres de los locales de dicha empresa*/
+	/*Seleciona los nombres de los locales de dicha empresa POR CATEGORÍA*/
 	public ArrayList<String> getListFunciones(String nombre) {
 		ArrayList<String> funciones = new ArrayList<String>();
 		prs = null;
 		rs = null;
 		try {
 			prs = (PreparedStatement) conn.prepareStatement("select name_funcion from funciontbl where nombre_emp = '"+nombre+"' and (category_funcion = 'Categoría A' or category_funcion = 'Categoría B' or category_funcion = 'Categoría C');");
+			prs.execute();
+			rs = prs.getResultSet();
+			while(rs.next()) {
+				funciones.add(rs.getString("name_funcion"));
+			}
+			prs.close();
+			rs.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return funciones;	
+	}
+	/*Mostrar todas las funciones*/
+	public ArrayList<String> getListFuncionesAll(String nombre) {
+		ArrayList<String> funciones = new ArrayList<String>();
+		prs = null;
+		rs = null;
+		try {
+			prs = (PreparedStatement) conn.prepareStatement("select name_funcion from funciontbl where nombre_emp = '"+nombre+"'");
 			prs.execute();
 			rs = prs.getResultSet();
 			while(rs.next()) {
@@ -355,6 +374,23 @@ public class ConexBD {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	/*Listados de empleados*/
+	public ArrayList<String> listaEmpleado(String empresa){
+		ArrayList<String> empleados = new ArrayList<String>();
+		prs = null;
+		rs = null;
+		try {
+			prs = (PreparedStatement) conn.prepareStatement("select concat(apellido1, \" \", nombre1) as empleado from empleadostbl where nombre_emp ='"+empresa+"';");
+			prs.execute();
+			rs = prs.getResultSet();
+			while(rs.next()) {
+				empleados.add(rs.getString("empleado"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return empleados;
 	}
 
 	

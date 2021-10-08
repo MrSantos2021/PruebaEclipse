@@ -40,7 +40,7 @@ public class FormularioCargoFuncion_Crear {
 	public JPanel construirPanelFuncion() {
 		jpFuncion = new JPanel();
 		jpFuncion.setBounds(1, 1, 305, 170);
-		jpFuncion.setBackground(Color.cyan);
+		//jpFuncion.setBackground(Color.cyan);
 		jpFuncion.setLayout(null);
 		
 		lbl_namefunc = new JLabel("Nombre del cargo:");

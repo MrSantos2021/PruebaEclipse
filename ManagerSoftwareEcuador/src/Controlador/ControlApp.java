@@ -8,6 +8,7 @@ import Vista.FormularioChangeEmpresa;
 import Vista.FormularioLocal;
 import Vista.FormularioLogin;
 import Vista.FormularioPersonal;
+import Vista.FormularioPersonalAsignar;
 import Vista.VentanaPrincipal;
 
 
@@ -21,6 +22,7 @@ public class ControlApp {
 	private ControlFormularioLocal cflocal = new ControlFormularioLocal();
 	private ControlFormularioFuncion cfcargo = new ControlFormularioFuncion();
 	private ControlFormularioEmpleado cfeempleado = new ControlFormularioEmpleado();
+	private ControlFormularioEmpleadoAsignar cfea = new ControlFormularioEmpleadoAsignar();
 	private ControlFinancieroBalanceInicial cfbi = new ControlFinancieroBalanceInicial();
 	
 	
@@ -32,6 +34,7 @@ public class ControlApp {
 	private FormularioCargoFuncion_Crear formCargo;
 	private FormCont_BalanceIni formBalanceIni;
 	private FormularioPersonal formPersonal;
+	private FormularioPersonalAsignar formAsigPerson;
 	
 	public ControlApp() {
 		// TODO Auto-generated constructor stub
@@ -65,5 +68,8 @@ public class ControlApp {
 		
 		formPersonal = new FormularioPersonal();
 		cfeempleado.cfe_empleado(vp, formPersonal, connex);
+		
+		formAsigPerson = new FormularioPersonalAsignar();
+		cfea.asignar_ventanaFormulario(vp, formAsigPerson, connex);
 	}
 }

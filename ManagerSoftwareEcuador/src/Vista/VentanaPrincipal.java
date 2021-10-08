@@ -65,7 +65,7 @@ public class VentanaPrincipal{
 		jm_rrhhPersonal = new JMenu("Selección Personal");
 		jmi_empleado = new JMenuItem("Datos del Empleado");
 		jmi_contrato = new JMenuItem("Contrato y Selección");
-		jmi_designacion = new JMenuItem("Designación");
+		jmi_designacion = new JMenuItem("Asignación");
 		jm_rrhhPersonal.add(jmi_empleado);
 		jm_rrhhPersonal.add(jmi_contrato);
 		jm_rrhhPersonal.add(jmi_designacion);
