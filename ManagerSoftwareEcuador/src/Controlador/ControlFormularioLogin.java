@@ -61,6 +61,19 @@ public class ControlFormularioLogin {
 				for(String cargo:cargos) {
 					fl.cb_cargo.addItem(cargo);
 				}
+				fl.cb_local.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						fl.cb_usuario.removeAllItems();
+						ArrayList<String>empleados = connBd.listaEmpleadoxLocal(fl.txt_empresa.getText(), fl.cb_local.getSelectedItem().toString());
+						for(String empleado:empleados) {
+							fl.cb_usuario.addItem(empleado);
+						}
+					}
+				});
+				
 				fl.btn_conex.setEnabled(false);
 				fl.jtabLogin.setEnabledAt(1, true);
 				fl.txt_empresa.setEditable(false);
@@ -77,17 +90,24 @@ public class ControlFormularioLogin {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				fl.ventanaInicio.setVisible(false);
-				vp.ventanaApp.setVisible(true);
-				
-
-				vp.ventanaApp.setTitle(fl.txt_empresa.getText());
-				LocalDateTime inicioHora = LocalDateTime.now();
-				LocalDate inicioFecha = LocalDate.now();
-				String tempH = inicioHora.getHour()+":"+inicioHora.getMinute()+":"+inicioHora.getSecond();
-				String tempF = inicioFecha.getYear()+"-"+inicioFecha.getMonthValue()+"-"+inicioFecha.getDayOfMonth();
-				conn.regHistorialEmpresa(fl.txt_empresa.getText(), fl.cb_local.getSelectedItem().toString(), "User 1", tempH, tempF);	
+				String tempEmpresa = fl.txt_empresa.getText();
+				String tempUser = fl.cb_usuario.getSelectedItem().toString();
+				String tempPass = String.valueOf(fl.txt_pass.getPassword());
+				if(conn.loginIngreso(tempEmpresa, tempUser, tempPass) == true) {
+					fl.ventanaInicio.setVisible(false);
+					vp.ventanaApp.setVisible(true);
+					vp.ventanaApp.setTitle(fl.txt_empresa.getText());
+					LocalDateTime inicioHora = LocalDateTime.now();
+					LocalDate inicioFecha = LocalDate.now();
+					String tempH = inicioHora.getHour()+":"+inicioHora.getMinute()+":"+inicioHora.getSecond();
+					String tempF = inicioFecha.getYear()+"-"+inicioFecha.getMonthValue()+"-"+inicioFecha.getDayOfMonth();
+					conn.regHistorialEmpresa(fl.txt_empresa.getText(), fl.cb_local.getSelectedItem().toString(), "User 1", tempH, tempF);	
+				}else {
+					JOptionPane.showMessageDialog(null, "Clave incorrecta", "Error de ingreso", JOptionPane.ERROR_MESSAGE);
+					fl.txt_pass.setText("");
+					fl.ventanaInicio.setVisible(true);
+					vp.ventanaApp.setVisible(false);
+				}				
 			}
 		});	
 	}
@@ -104,7 +124,6 @@ public class ControlFormularioLogin {
 	}
 	public void cfl_changeCompany(FormularioLogin fl, FormularioChangeEmpresa fce, ConexBD conn) {
 		fl.btn_changeEmpresa.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

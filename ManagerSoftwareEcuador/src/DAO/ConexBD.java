@@ -63,6 +63,23 @@ public class ConexBD {
 			e.printStackTrace();
 		}		
 	}
+	/*En el LOGIN antes de ingresar al sistema se verifica datos */
+	public boolean loginIngreso(String empresa, String user, String pass) {
+		boolean resultado = false;
+		state = null;
+		rs = null;
+		try {
+			state = (Statement) conn.createStatement();
+			String sql = "select * from asignacionPermanente where empresa_asig = '"+empresa+"' and user_asig = '"+user+"' and pass_asig = '"+pass+"';";
+			rs = state.executeQuery(sql);
+			if(rs.next()){
+				resultado = true; 
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 	/*Al momento de crear una empresa, automáticamente se creará un local por default*/
 	public void crearLocalDefault(String nombreEmp) {
 		state = null;
@@ -76,19 +93,7 @@ public class ConexBD {
 			e.printStackTrace();
 		}
 	}
-	/*Al momento de crear una empresa, automáticamente se creará una FUNCION o CARGO por default*/
-	public void crearFuncionDefault(String nombreEmp) {
-		state = null;
-		
-		try {
-			state = (Statement) conn.createStatement();
-			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Gerente', 'Categoría A', 'Desempeñar en una organización la planeación, la organización, la dirección y el control');");
-			state.close();	
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	/*Crear locales*/
 	public void crearLocales(String nombre_empresa, String tipo, String nombre_local, String prov, String ciudad, String direc, String telf1, String telf2) {
 		state = null;
@@ -119,6 +124,19 @@ public class ConexBD {
 			e.printStackTrace();
 		}
 		return locales;	
+	}
+	/*Al momento de crear una empresa, automáticamente se creará una FUNCION o CARGO por default*/
+	public void crearFuncionDefault(String nombreEmp) {
+		state = null;
+		
+		try {
+			state = (Statement) conn.createStatement();
+			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Gerente', 'Categoría A', 'Desempeñar en una organización la planeación, la organización, la dirección y el control');");
+			state.close();	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	/*Seleciona los nombres de los locales de dicha empresa POR CATEGORÍA*/
 	public ArrayList<String> getListFunciones(String nombre) {
@@ -158,6 +176,27 @@ public class ConexBD {
 		}
 		return funciones;	
 	}
+	
+	/*Reconocer la categoría de la función*/
+	public String categoriaFuncion(String nombre) {
+		String categoria = null;
+		prs = null;
+		rs = null;
+		try {
+			prs = (PreparedStatement) conn.prepareStatement("select category_funcion from funciontbl where name_funcion = '"+nombre+"';");
+			prs.execute();
+			rs = prs.getResultSet();
+			while(rs.next()) {
+				categoria = rs.getString("category_funcion");
+			}
+			prs.close();
+			rs.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return categoria;	
+	}
+	
 	/*Selecciona el último ID de LOCAL*/
 	public int getIdLocal() {
 		int num=0;
@@ -360,7 +399,8 @@ public class ConexBD {
 			state.close();
 		}catch(Exception e){
 			e.printStackTrace();
-		}		
+		}	
+		
 	}
 	/*Registro de nuevo Empleado*/
 	public void crearEmpleado(String nombreEmp, String nombre1, String nombre2, String apellido1, String apellido2) {
@@ -392,6 +432,37 @@ public class ConexBD {
 		}
 		return empleados;
 	}
+	/*Registrar la Asignación Permanente*/
+	public void asignacion(String nombreEmp, String user, String local, String cargo, String pass) {
+		state = null;
+		
+		try {
+			state = (Statement) conn.createStatement();
+			state.executeUpdate("insert into asignacionPermanente(empresa_asig, user_asig, local_asig, cargo_asig, pass_asig) values('"+nombreEmp+"', '"+user+"', '"+local+"', '"+cargo+"','"+pass+"');");
+			state.close();	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/*En el login aparecerán los nombres de los empleados del local seleccionado*/
+	public ArrayList<String> listaEmpleadoxLocal(String empresa, String local){
+		ArrayList<String> empleados = new ArrayList<String>();
+		prs = null;
+		rs = null;
+		try {
+			prs = (PreparedStatement) conn.prepareStatement("select user_asig from asignacionPermanente where empresa_asig = '"+empresa+"' and local_asig = '"+local+"';");
+			prs.execute();
+			rs = prs.getResultSet();
+			while(rs.next()) {
+				empleados.add(rs.getString("user_asig"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return empleados;
+	}
+	
 
 	
 }

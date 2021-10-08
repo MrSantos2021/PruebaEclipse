@@ -47,6 +47,7 @@ public class ControlFormularioEmpleadoAsignar {
 					for(String funcion:funciones) {
 						fpa.cb_cargo.addItem(funcion);
 					}
+					
 					fpa.txt_pass.setEnabled(false);
 					fpa.btn_add.setEnabled(false);
 					fpa.btn_actualizar.setEnabled(false);
@@ -63,7 +64,23 @@ public class ControlFormularioEmpleadoAsignar {
 				fpa.cb_user.setEnabled(true);
 				fpa.cb_local.setEnabled(true);
 				fpa.cb_cargo.setEnabled(true);
-				fpa.txt_pass.setEnabled(true);
+				fpa.txt_pass.setEnabled(false);
+				fpa.cb_cargo.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						String funcion = fpa.cb_cargo.getSelectedItem().toString();
+						String tipo = conn.categoriaFuncion(funcion);
+						if(tipo.equals("Categoría D")) {
+							fpa.txt_pass.setEnabled(false);
+							fpa.txt_pass.setText("");
+						}else {
+							fpa.txt_pass.setEnabled(true);
+							fpa.txt_pass.setText("");
+						}
+					}
+				});
 				fpa.btn_add.setEnabled(true);
 				fpa.btn_actualizar.setEnabled(false);
 				fpa.btn_guardar.setEnabled(true);
@@ -83,6 +100,62 @@ public class ControlFormularioEmpleadoAsignar {
 				fpa.btn_actualizar.setEnabled(true);
 				fpa.btn_guardar.setEnabled(true);
 				fpa.btn_reg.setEnabled(true);
+			}
+		});
+		/*
+		fpa.cb_cargo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String funcion = fpa.cb_cargo.getSelectedItem().toString();
+				String tipo = conn.categoriaFuncion(funcion);
+				if(tipo.equals("Categoría D")) {
+					fpa.txt_pass.setEnabled(false);
+					fpa.txt_pass.setText("");
+				}else {
+					fpa.txt_pass.setEnabled(true);
+					fpa.txt_pass.setText("");
+				}
+			}
+		});*/
+		
+		fpa.btn_add.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String tempUser = fpa.cb_user.getSelectedItem().toString();
+				String tempLocal = fpa.cb_local.getSelectedItem().toString();
+				String tempCargo = fpa.cb_cargo.getSelectedItem().toString();
+				String tempPass = fpa.txt_pass.getText();
+				
+				String[]informacion = {tempUser, tempLocal, tempCargo, tempPass};
+				
+				fpa.dtm_empleadoAsig.addRow(informacion);
+				fpa.cb_user.setSelectedIndex(0);
+				fpa.cb_local.setSelectedIndex(0);
+				fpa.cb_cargo.setSelectedIndex(0);
+				fpa.txt_pass.setText("");
+			}
+		});
+		
+		fpa.btn_guardar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int rows = fpa.tbl_empleadoAsig.getRowCount();
+				for(int row=0; row<rows; row++) {
+					String tempUser = (String) fpa.tbl_empleadoAsig.getValueAt(row, 0);
+					String tempLocal = (String) fpa.tbl_empleadoAsig.getValueAt(row, 1);
+					String tempCargo = (String) fpa.tbl_empleadoAsig.getValueAt(row, 2);
+					String tempPass = (String) fpa.tbl_empleadoAsig.getValueAt(row, 3);
+					
+					conn.asignacion(vp.ventanaApp.getTitle(), tempUser, tempLocal, tempCargo, tempPass);
+					JOptionPane.showMessageDialog(null, "Registrado a la Base");
+					
+				}
 			}
 		});
 

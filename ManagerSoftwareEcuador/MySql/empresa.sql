@@ -94,6 +94,7 @@ descrip_funcion varchar(50) null,
 primary key (id_funcion)
 );
 select * from funciontbl;
+select category_funcion from funciontbl where name_funcion = 'Gerente';
 select name_funcion from funciontbl where nombre_emp = 'Abc' and (category_funcion = 'A' or category_funcion = 'B');
 truncate table funciontbl;
 insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('Abc', 'Funcion 1', 'A', 'Realiza a,b, c.');
@@ -108,6 +109,23 @@ apellido2 varchar(50) not null,
 primary key(id_empleado)
 );
 select * from empleadostbl;
-select concat(apellido1, " ", nombre1) as empleado from empleadostbl where nombre_emp ='';
+select concat(apellido1, " ", nombre1) as empleado from empleadostbl where nombre_emp ='a';
 truncate empleadostbl;
 insert into empleadostbl (nombre_emp, nombre1, nombre2, apellido1, apellido2) values('a','b','c','d','e');
+
+create table asignacionPermanente(
+id_asig int not null auto_increment,
+empresa_asig varchar(50) not null,
+user_asig varchar(40) not null,
+local_asig varchar(40) not null,
+cargo_asig  varchar(40) not null,
+pass_asig varchar(15) null,
+primary key(id_asig)
+);
+select * from asignacionPermanente;
+select user_asig from asignacionPermanente where local_asig = 'a';
+drop table asignacionPermanente;
+truncate asignacionPermanente;
+insert into asignacionPermanente(empresa_asig, user_asig, local_asig, cargo_asig, pass_asig) values('a', 'a', 'a', 'a');
+create table asignacionDiaria(
+);
