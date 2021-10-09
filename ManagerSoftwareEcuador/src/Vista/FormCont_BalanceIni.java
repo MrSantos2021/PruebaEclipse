@@ -64,7 +64,7 @@ public class FormCont_BalanceIni {
 		jsp_debe.setBounds(325, 15, 220, 150);
 		
 		TableColumn tc_db = tbl_debe.getColumn("Cuenta");
-		tc_db.setPreferredWidth(150);
+		tc_db.setPreferredWidth(140);
 		DefaultTableCellRenderer derech = new DefaultTableCellRenderer();
 		derech.setHorizontalAlignment(JLabel.RIGHT);
 		tbl_debe.getColumnModel().getColumn(1).setCellRenderer(derech);
@@ -108,7 +108,7 @@ public class FormCont_BalanceIni {
 		jsp_haber = new JScrollPane(tbl_haber);
 		jsp_haber.setBounds(325, 15, 220, 150);
 		TableColumn tc_hb = tbl_haber.getColumn("Cuenta");
-		tc_hb.setPreferredWidth(150);
+		tc_hb.setPreferredWidth(140);
 		DefaultTableCellRenderer rightHb = new DefaultTableCellRenderer();
 		rightHb.setHorizontalAlignment(JLabel.RIGHT);
 		tbl_haber.getColumnModel().getColumn(1).setCellRenderer(rightHb);
@@ -153,7 +153,7 @@ public class FormCont_BalanceIni {
 		jsp_patr.setBounds(325, 15, 220, 150);
 		
 		TableColumn tc_pat = tbl_patr.getColumn("Cuenta");
-		tc_pat.setPreferredWidth(150);
+		tc_pat.setPreferredWidth(140);
 		DefaultTableCellRenderer rightPat = new DefaultTableCellRenderer();
 		rightPat.setHorizontalAlignment(JLabel.RIGHT);
 		tbl_patr.getColumnModel().getColumn(1).setCellRenderer(rightPat);

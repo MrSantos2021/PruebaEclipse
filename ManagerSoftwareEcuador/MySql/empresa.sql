@@ -123,6 +123,7 @@ pass_asig varchar(15) null,
 primary key(id_asig)
 );
 select * from asignacionPermanente;
+select * from asignacionPermanente where empresa_asig = 'Santos y Asociados S.A.' and user_asig = 'De Los Santos Christian' and pass_asig = '12345';
 select user_asig from asignacionPermanente where local_asig = 'a';
 drop table asignacionPermanente;
 truncate asignacionPermanente;
