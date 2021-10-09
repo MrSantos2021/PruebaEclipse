@@ -370,24 +370,7 @@ public class ConexBD {
 			e.printStackTrace();
 		}		
 	}
-	//Financiero
-	/*Mostrar los Activos*/
-	public ArrayList<String> planCtaList(String tipoCta){
-		ArrayList<String> activo = new ArrayList<String>();
-		prs = null;
-		rs = null;
-		try {
-			prs = (PreparedStatement) conn.prepareStatement("select nameCta from planCtastbl where tipoCta = '"+tipoCta+"';");
-			prs.execute();
-			rs = prs.getResultSet();
-			while(rs.next()) {
-				activo.add(rs.getString("nameCta"));
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return activo;
-	}
+
 	/*Registro de nueva Función o Cargo*/
 	public void crearFuncion(String empresa, String funcion, String categoria, String descripcion) {
 		state = null;
@@ -459,6 +442,37 @@ public class ConexBD {
 			e.printStackTrace();
 		}
 		return empleados;
+	}
+	//Financiero
+	/*Mostrar los Activos*/
+	public ArrayList<String> planCtaList(String tipoCta){
+		ArrayList<String> activo = new ArrayList<String>();
+		prs = null;
+		rs = null;
+		try {
+			prs = (PreparedStatement) conn.prepareStatement("select nameCta from planCtastbl where tipoCta = '"+tipoCta+"';");
+			prs.execute();
+			rs = prs.getResultSet();
+			while(rs.next()) {
+				activo.add(rs.getString("nameCta"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return activo;
+	}
+	/*Registrar libro diario*/
+	public void registrarLibroDiarioBalanceInicial(String fecha, String cta, String db, String hb, String detalle) {
+		state = null;
+		
+		try {
+			state = (Statement) conn.createStatement();
+			state.executeUpdate("insert diariogeneraltbl(trans_dg, fecha_dg, cta_dg, debe_dg, haber_dg, detalle_dg) values(1, cast('"+fecha+"' as date) , '"+cta+"', "+db+", "+hb+", '"+detalle+"');");
+			state.close();	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 

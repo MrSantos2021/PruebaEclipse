@@ -146,6 +146,7 @@ public class ControlFormularioEmpleadoAsignar {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int rows = fpa.tbl_empleadoAsig.getRowCount();
+				//int column = fpa.tbl_empleadoAsig.getColumnCount();
 				for(int row=0; row<rows; row++) {
 					String tempUser = (String) fpa.tbl_empleadoAsig.getValueAt(row, 0);
 					String tempLocal = (String) fpa.tbl_empleadoAsig.getValueAt(row, 1);

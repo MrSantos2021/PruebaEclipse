@@ -23,10 +23,10 @@ public class FormCont_BalanceIni {
 	public JScrollPane jsp_debe, jsp_haber, jsp_patr;
 	private JPanel jpDebitar, jpAcreditar, jpPatrimonio;
 	private JLabel lbl_ctadb, lblvalordb, lbldetdb, lbl_ctahb, lblvalorhb, lbldethb, lbl_ctapt, lblvalorpt, lbldetpt;
-	public JComboBox<String> cb_ctaDebe, cb_ctaHabe, cb_ctaPat;
-	public JTextField txt_valordb, txt_valorhb, txt_valorpat;
+	public JComboBox<String> cb_ctaDebe, cb_ctaHabe;
+	public JTextField txt_valordb, txt_valorhb, txt_valorpat, txt_ctaPat;
 	public JTextArea txt_detalledb, txt_dethb, txt_detpat;
-	public JButton btn_db, btn_hb, btn_pat, btn_visualizar, btn_grabar;
+	public JButton btn_db, btn_hb, btn_pat, btn_verPat, btn_visualizar, btn_grabar;
 	
 	public FormCont_BalanceIni() {
 		// TODO Auto-generated constructor stub
@@ -57,6 +57,7 @@ public class FormCont_BalanceIni {
 		dtm_debe = new DefaultTableModel();
 		dtm_debe.addColumn("Cuenta");
 		dtm_debe.addColumn("Valor");
+		dtm_debe.addColumn("Detalle");
 		
 		tbl_debe = new JTable(dtm_debe);
 		tbl_debe.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -102,6 +103,7 @@ public class FormCont_BalanceIni {
 		dtm_haber = new DefaultTableModel();
 		dtm_haber.addColumn("Cuenta");
 		dtm_haber.addColumn("Valor");
+		dtm_haber.addColumn("Detalle");
 		
 		tbl_haber = new JTable(dtm_haber);
 		tbl_haber.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -146,6 +148,7 @@ public class FormCont_BalanceIni {
 		dtm_patr = new DefaultTableModel();
 		dtm_patr.addColumn("Cuenta");
 		dtm_patr.addColumn("Valor");
+		dtm_patr.addColumn("Detalle");
 		
 		tbl_patr = new JTable(dtm_patr);
 		tbl_patr.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -159,27 +162,32 @@ public class FormCont_BalanceIni {
 		tbl_patr.getColumnModel().getColumn(1).setCellRenderer(rightPat);
 		
 		
-		lbl_ctapt = new JLabel("Seleccione la cuenta:");
+		lbl_ctapt = new JLabel("Nombre de la cuenta:");
 		lbl_ctapt.setBounds(10, 15, 150, 20);
-		cb_ctaPat = new JComboBox<String>();
-		cb_ctaPat.setBounds(150, 15, 150, 20);
-		lblvalorpt = new JLabel("Ingrese valor:");
+		txt_ctaPat = new JTextField("Capital");
+		txt_ctaPat.setEditable(false);
+		txt_ctaPat.setBounds(150, 15, 150, 20);
+		lblvalorpt = new JLabel("Valor del capital:");
 		lblvalorpt.setBounds(10, 45, 150, 20);
 		txt_valorpat = new JTextField();
+		txt_valorpat.setEditable(false);
 		txt_valorpat.setBounds(150, 45, 150, 20);
 		lbldetpt = new JLabel("Detalle de la cuenta:");
 		lbldetpt.setBounds(10, 75, 150, 20);
 		txt_detpat = new JTextArea();
 		txt_detpat.setBounds(150, 75, 150, 50);
-		btn_pat = new JButton("Ingreso al Patrimonio");
-		btn_pat.setBounds(80, 140, 180, 20);
+		btn_verPat = new JButton("Ver Patrimonio");
+		btn_verPat.setBounds(5, 140, 150, 20);
+		btn_pat = new JButton("Añadir la Tabla");
+		btn_pat.setBounds(165, 140, 150, 20);
 		
 		jpPatrimonio.add(lbl_ctapt);
-		jpPatrimonio.add(cb_ctaPat);
+		jpPatrimonio.add(txt_ctaPat);
 		jpPatrimonio.add(lblvalorpt);
 		jpPatrimonio.add(txt_valorpat);
 		jpPatrimonio.add(lbldetpt);
 		jpPatrimonio.add(txt_detpat);
+		jpPatrimonio.add(btn_verPat);
 		jpPatrimonio.add(btn_pat);
 		jpPatrimonio.add(jsp_patr);
 		return jpPatrimonio;

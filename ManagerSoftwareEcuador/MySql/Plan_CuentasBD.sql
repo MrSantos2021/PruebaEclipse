@@ -22,7 +22,10 @@ haber_dg decimal(9,2)not null,
 detalle_dg varchar(100) null,
 primary key(id_dg)
 );
-insert diariogeneraltbl() values();
+drop table diariogeneraltbl;
+truncate diariogeneraltbl;
+select * from diariogeneraltbl;
+insert diariogeneraltbl(trans_dg, fecha_dg, cta_dg, debe_dg, haber_dg, detalle_dg) values(1, current_date(), 'c', 1000, 0, 'de');
 create table dg_auxtbl(
 id_aux
 trans
