@@ -170,6 +170,7 @@ public class ControlFormularioAddCompany {
 				conn.registrarEmpresa(empresa.getEmp_nombre(), empresa.getEmp_ruc(), empresa.getEmp_actividad(), empresa.getEmp_tamanio(), empresa.getEmp_capital(), empresa.getEmp_ambito(), empresa.getEmp_beneficio(), empresa.getEmp_fjuridico(), empresa.getEmp_produccion(), empresa.getEmp_socios(), empresa.isEmp_ce(), empresa.getEmp_subcorp());
 				conn.crearLocalDefault(empresa.getEmp_nombre());
 				conn.crearFuncionDefault(empresa.getEmp_nombre());
+				conn.asignacion(empresa.getEmp_nombre(), "User 1", "Local A", "Técnico", "111");
 				
 				fl.txt_empresa.setText(empresa.getEmp_nombre());
 				ArrayList<String>locales = conn.getListLocales(empresa.getEmp_nombre());

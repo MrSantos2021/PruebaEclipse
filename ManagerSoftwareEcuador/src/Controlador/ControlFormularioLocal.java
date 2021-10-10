@@ -19,10 +19,7 @@ public class ControlFormularioLocal {
 	
 	}
 	public void local_ventana(VentanaPrincipal vp, FormularioLocal formLocal, ConexBD conn) {
-		
-		
 		vp.jmi_local.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -61,14 +58,14 @@ public class ControlFormularioLocal {
 					formLocal.btn_aceptar.setEnabled(false);
 					
 					formLocal.opc_Crear.addActionListener(new ActionListener() {
-						
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO Auto-generated method stub
 							formLocal.cb_locales.setEnabled(false);
 							formLocal.cb_locales.setSelectedIndex(0);
-							int tempId = (conn.getIdLocal()+1);
-							formLocal.txt_id.setText(String.valueOf(tempId));
+							int tempId = conn.getIdLocal(vp.ventanaApp.getTitle()) + 1;
+							int newId = tempId + 1;
+							formLocal.txt_id.setText(String.valueOf(newId));
 							formLocal.txt_id.setEditable(false);
 							formLocal.txt_id.setEnabled(true);
 							formLocal.cb_tipo.setEnabled(true);
@@ -100,12 +97,10 @@ public class ControlFormularioLocal {
 							formLocal.cb_locales.setEnabled(true);
 							formLocal.cb_locales.setSelectedIndex(0);
 							formLocal.cb_locales.addActionListener(new ActionListener() {
-								
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									// TODO Auto-generated method stub
 									String tempEmpresa = vp.ventanaApp.getTitle();
-									
 									int totalLocales = formLocal.cb_locales.getItemCount();
 									for(int i=0; i<=totalLocales; i++) {
 										if(formLocal.cb_locales.getSelectedIndex() == i) {
@@ -135,19 +130,16 @@ public class ControlFormularioLocal {
 					});
 					
 					formLocal.opc_Ver.addActionListener(new ActionListener() {
-						
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO Auto-generated method stub
 							formLocal.cb_locales.setEnabled(true);
 							formLocal.cb_locales.setSelectedIndex(0);
 							formLocal.cb_locales.addActionListener(new ActionListener() {
-								
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									// TODO Auto-generated method stub
 									String tempEmpresa = vp.ventanaApp.getTitle();
-									
 									int totalLocales = formLocal.cb_locales.getItemCount();
 									for(int i=0; i<=totalLocales; i++) {
 										if(formLocal.cb_locales.getSelectedIndex() == i) {
@@ -188,7 +180,6 @@ public class ControlFormularioLocal {
 				local.setDirLocal(formLocal.txt_dir.getText());
 				local.setTelf1(formLocal.txt_telf1.getText());
 				local.setTelf2(formLocal.txt_telf2.getText());
-				
 				if(formLocal.opc_Crear.isSelected()) {
 					conn.crearLocales(vp.ventanaApp.getTitle(), local.getTipoLocal(), local.getNombreLocal(), local.getProvLocal(), local.getCuidadLocal(), local.getDirLocal(), local.getTelf1(), local.getTelf2());
 					JOptionPane.showMessageDialog(null, "Has creado un nuevo LOCAL.", "Registrado", JOptionPane.INFORMATION_MESSAGE);
@@ -198,12 +189,9 @@ public class ControlFormularioLocal {
 				}else {
 					formLocal.ventanaFormLocal.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Has revisado la información del LOCAL");
-				}
-				
+				}			
 				formLocal.ventanaFormLocal.dispose();
 			}
 		});
-	}
-
-	
+	}	
 }

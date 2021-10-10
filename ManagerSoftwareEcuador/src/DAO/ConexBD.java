@@ -86,7 +86,7 @@ public class ConexBD {
 		
 		try {
 			state = (Statement) conn.createStatement();
-			state.executeUpdate("insert into localtbl (nombre_emp, tipoLocal, nombreLocal, provLocal, ciudadLocal, dirLocal, telf1Local, telf2Local) values('"+nombreEmp+"','Matriz', 'Local 1', 'Guayas', 'Guayaquil', 'Avenida 1 y calle 1', '2444444', '2555555');");
+			state.executeUpdate("insert into localtbl (nombre_emp, idLocalxEmpresa, tipoLocal, nombreLocal, provLocal, ciudadLocal, dirLocal, telf1Local, telf2Local) values('"+nombreEmp+"', 1,'Matriz', 'Local A', 'Guayas', 'Guayaquil', 'Avenida 1 y calle 1', '2444444', '2555555');");
 			state.close();	
 			
 		}catch(Exception e) {
@@ -131,7 +131,7 @@ public class ConexBD {
 		
 		try {
 			state = (Statement) conn.createStatement();
-			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Gerente', 'Categoría A', 'Desempeñar en una organización la planeación, la organización, la dirección y el control');");
+			state.executeUpdate("insert into funciontbl(nombre_emp, name_funcion, category_funcion, descrip_funcion) values('"+nombreEmp+"', 'Técnico', 'Categoría A', 'Soporte técnico');");
 			state.close();	
 			
 		}catch(Exception e) {
@@ -198,12 +198,12 @@ public class ConexBD {
 	}
 	
 	/*Selecciona el último ID de LOCAL*/
-	public int getIdLocal() {
+	public int getIdLocal(String empresa) {
 		int num=0;
 		prs = null;
 		rs  = null;
 		try {
-			prs = (PreparedStatement) conn.prepareStatement("select idLocal from localtbl order by idLocal desc limit 1;");
+			prs = (PreparedStatement) conn.prepareStatement("select idLocalxEmpresa from localtblB where nombre_emp = '"+empresa+"' order by idLocalxEmpresa desc limit 1;");
 			prs.execute();
 			rs = prs.getResultSet();
 			while(rs.next()) {
@@ -226,7 +226,7 @@ public class ConexBD {
 			prs.execute();
 			rs = prs.getResultSet();
 			while(rs.next()) {
-				txtId.setText(rs.getString("idLocal"));
+				txtId.setText(rs.getString("idLocalxEmpresa"));
 				cbTipo.getModel().setSelectedItem(rs.getString("tipoLocal"));
 				txtLocal.setText(rs.getString("nombreLocal"));
 				cbProv.getModel().setSelectedItem(rs.getString("provLocal"));
