@@ -69,7 +69,7 @@ public class ControlApp {
 		cfbi.ventana_balanceInicial(vp, formBalanceIni, connex);
 		
 		formDg = new FormCont_DiarioGeneral();
-		cfdg.ventana_DiarioGeneral(vp, formDg);
+		cfdg.ventana_DiarioGeneral(vp, formDg, fl);
 		
 		formPersonal = new FormularioPersonal();
 		cfeempleado.cfe_empleado(vp, formPersonal, connex);

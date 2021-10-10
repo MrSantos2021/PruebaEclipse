@@ -65,6 +65,7 @@ select id_history from reg_history order by id_history desc limit 1;
 
 create table localtbl(
 idLocal tinyint not null auto_increment,
+idLocalxEmpresa int not null,
 nombre_emp varchar(25) not null,
 tipoLocal varchar(10) not null,
 nombreLocal varchar(25) not null,
@@ -75,9 +76,11 @@ telf1Local varchar(10) null,
 telf2Local varchar(10) null,
 primary key (idLocal)
 );
+insert into localtbl (nombre_emp, idLocalxEmpresa, tipoLocal, nombreLocal, provLocal, ciudadLocal, dirLocal, telf1Local, telf2Local) values('Def S.A.', 1,'Matriz', 'Local A', 'Guayas', 'Guayaquil', 'Avenida 1 y calle 1', '2444444', '2555555');
 drop table localtbl;
 truncate table localtbl;
 select * from localtbl;
+select idLocalxEmpresa from localtblB where nombre_emp = 'Abc S.A.' order by idLocalxEmpresa desc limit 1;
 insert into localtbl (nombre_emp, tipoLocal, nombreLocal, provLocal, ciudadLocal, dirLocal, telf1Local, telf2Local) values('Abc S.A.','Matriz', 'Local 1', 'Guayas', 'Guayaquil', 'Avenida 1 y calle 1', '2444444', '2555555');
 update localtbl set tipoLocal='A', nombreLocal = 'A', provLocal ='A', ciudadLocal='A', dirLocal='A', telf1Local='A', telf2Local='A' where nombre_emp = 'A' and nombreLocal='A';
 select nombreLocal from localtbl where nombre_emp = 'Santos y Asociados S.A.';

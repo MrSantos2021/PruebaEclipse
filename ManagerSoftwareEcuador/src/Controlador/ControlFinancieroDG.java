@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import Vista.FormCont_DiarioGeneral;
+import Vista.FormularioLogin;
 import Vista.VentanaPrincipal;
 
 public class ControlFinancieroDG {
 	public ControlFinancieroDG() {
 		// TODO Auto-generated constructor stub
 	}
-	public void ventana_DiarioGeneral(VentanaPrincipal vp, FormCont_DiarioGeneral formDg) {
+	public void ventana_DiarioGeneral(VentanaPrincipal vp, FormCont_DiarioGeneral formDg, FormularioLogin fl) {
 		vp.jmi_diarioGeneral.addActionListener(new ActionListener() {
 			
 			@Override
@@ -23,6 +24,8 @@ public class ControlFinancieroDG {
 				}else {
 					vp.deskPrincipal.add(formDg.ventanaDiarioGeneral);
 					formDg.ventanaDiarioGeneral.show();
+					
+					formDg.txt_user.setText(fl.cb_usuario.getSelectedItem().toString());
 				}
 			}
 		});
