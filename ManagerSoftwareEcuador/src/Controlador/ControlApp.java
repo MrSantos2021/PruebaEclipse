@@ -2,6 +2,7 @@ package Controlador;
 
 import DAO.ConexBD;
 import Vista.FormCont_BalanceIni;
+import Vista.FormCont_DiarioGeneral;
 import Vista.FormularioAddEmpresa;
 import Vista.FormularioCargoFuncion_Crear;
 import Vista.FormularioChangeEmpresa;
@@ -24,7 +25,7 @@ public class ControlApp {
 	private ControlFormularioEmpleado cfeempleado = new ControlFormularioEmpleado();
 	private ControlFormularioEmpleadoAsignar cfea = new ControlFormularioEmpleadoAsignar();
 	private ControlFinancieroBalanceInicial cfbi = new ControlFinancieroBalanceInicial();
-	
+	private ControlFinancieroDG cfdg = new ControlFinancieroDG();
 	
 	private FormularioLogin fl = new FormularioLogin();
 	private FormularioAddEmpresa fae = new FormularioAddEmpresa();
@@ -33,6 +34,7 @@ public class ControlApp {
 	private FormularioLocal formLocal;
 	private FormularioCargoFuncion_Crear formCargo;
 	private FormCont_BalanceIni formBalanceIni;
+	private FormCont_DiarioGeneral formDg;
 	private FormularioPersonal formPersonal;
 	private FormularioPersonalAsignar formAsigPerson;
 	
@@ -65,6 +67,9 @@ public class ControlApp {
 		
 		formBalanceIni = new FormCont_BalanceIni();
 		cfbi.ventana_balanceInicial(vp, formBalanceIni, connex);
+		
+		formDg = new FormCont_DiarioGeneral();
+		cfdg.ventana_DiarioGeneral(vp, formDg);
 		
 		formPersonal = new FormularioPersonal();
 		cfeempleado.cfe_empleado(vp, formPersonal, connex);

@@ -61,6 +61,7 @@ public class ControlFormularioLogin {
 				for(String cargo:cargos) {
 					fl.cb_cargo.addItem(cargo);
 				}
+				
 				fl.cb_local.addActionListener(new ActionListener() {
 					
 					@Override
@@ -71,6 +72,9 @@ public class ControlFormularioLogin {
 						for(String empleado:empleados) {
 							fl.cb_usuario.addItem(empleado);
 						}
+						fl.txt_pass.setEnabled(true);
+						fl.txt_pass.setEditable(true);
+						fl.btn_inicio.setEnabled(true);
 					}
 				});
 				
@@ -79,9 +83,7 @@ public class ControlFormularioLogin {
 				fl.txt_empresa.setEditable(false);
 				fl.cb_local.setEnabled(true);
 				fl.cb_cargo.setEnabled(true);
-				fl.cb_usuario.setEnabled(true);
-				fl.txt_pass.setEditable(true);
-				fl.btn_inicio.setEnabled(true);		
+				fl.cb_usuario.setEnabled(true);	
 			}
 		});
 	}
@@ -89,11 +91,12 @@ public class ControlFormularioLogin {
 		fl.btn_inicio.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				String tempEmpresa = fl.txt_empresa.getText();
 				String tempLocal = fl.cb_local.getSelectedItem().toString();
 				String tempUser = fl.cb_usuario.getSelectedItem().toString();
 				String tempPass = String.valueOf(fl.txt_pass.getPassword());
+				
 				if(conn.loginIngreso(tempEmpresa, tempUser, tempPass) == true) {
 					fl.ventanaInicio.setVisible(false);
 					vp.ventanaApp.setVisible(true);

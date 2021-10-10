@@ -39,7 +39,7 @@ public class ConexBD {
 		try {
 			Class.forName(driver);
 			conn = (Connection) DriverManager.getConnection(connect, user, pass);
-			JOptionPane.showMessageDialog(null, "Conexión exitosa con la Base de Datos.", "Base de Datos", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Conexión exitosa con la Base de Datos.\nAhora seleccione primero el LOCAL luego el USUARIO.", "Base de Datos", JOptionPane.INFORMATION_MESSAGE);
 		}catch(Exception e){
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error de conexión.", "Error de Base", JOptionPane.ERROR_MESSAGE);
